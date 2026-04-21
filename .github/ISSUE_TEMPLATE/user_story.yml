@@ -16,6 +16,5 @@ body:
       placeholder: |
         - [ ] Criterio de rendimiento (ej. < 2s)...
         - [ ] Criterio de seguridad...
->>>>>>> main
     validations:
       required: true
