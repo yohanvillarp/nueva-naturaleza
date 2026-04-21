@@ -8,10 +8,13 @@ body:
       placeholder: "Como [rol], quiero [funcionalidad] para [beneficio]..."
     validations:
       required: true
-  - type: input
+  - type: textarea # CAMBIO CLAVE: De 'input' a 'textarea'
     id: criteria
     attributes:
-      label: Criterio de Aceptación
-      placeholder: "Debe permitir subir archivos PDF de máximo 5MB"
+      label: Criterios de Aceptación
+      description: "Desglose los criterios usando listas de verificación (- [ ])."
+      placeholder: |
+        - [ ] Criterio de rendimiento (ej. < 2s)...
+        - [ ] Criterio de seguridad...
     validations:
       required: true
