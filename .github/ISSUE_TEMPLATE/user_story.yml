@@ -8,14 +8,7 @@ body:
       placeholder: "Como [rol], quiero [funcionalidad] para [beneficio]..."
     validations:
       required: true
-<<<<<<< feat/rqa-bot-dashboard
-  - type: input
-    id: criteria
-    attributes:
-      label: Criterio de Aceptación
-      placeholder: "Debe permitir subir archivos PDF de máximo 5MB"
-=======
-  - type: textarea # CAMBIO CLAVE: De 'input' a 'textarea'
+  - type: textarea
     id: criteria
     attributes:
       label: Criterios de Aceptación
