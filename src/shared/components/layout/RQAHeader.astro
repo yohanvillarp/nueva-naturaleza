@@ -1,0 +1,85 @@
+---
+// src/shared/components/layout/RQAHeader.astro
+const repoUrl = "https://github.com/yohanvillarp/nueva-naturaleza";
+---
+
+<header class="fixed top-0 left-0 w-full bg-[#1a1f2e] border-b-8 border-indigo-500 p-5 z-[100] shadow-[0_8px_0_0_rgba(0,0,0,0.5)]">
+  
+  <div class="brush-stroke"></div>
+
+  <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-6 relative z-10">
+    
+    <div class="flex items-center gap-4 group cursor-default">
+      <div class="bg-yellow-400 text-[#0d1117] font-black px-4 py-1.5 border-4 border-[#0d1117] transform -rotate-3 text-xs uppercase tracking-widest shadow-[4px_4px_0_0_#0d1117] group-hover:rotate-0 transition-all duration-300">
+        Dev Env
+      </div>
+      <h1 class="text-white font-['Space_Grotesk'] font-black uppercase tracking-widest text-2xl drop-shadow-md flex items-center">
+        Lab<span class="slash-tip mx-1 font-sans">/</span>QA
+      </h1>
+    </div>
+
+    <nav class="flex items-center gap-8">
+      <a 
+        href="/" 
+        class="text-gray-300 font-bold hover:text-white transition-colors text-sm uppercase tracking-widest flex items-center gap-2 relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-0 after:h-1 after:bg-pink-500 hover:after:w-full after:transition-all after:duration-300"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+        Landing Page
+      </a>
+      
+      <a 
+        href={repoUrl} 
+        target="_blank" 
+        class="bg-emerald-400 text-[#0d1117] font-black px-6 py-2.5 border-4 border-[#0d1117] rounded-none shadow-[6px_6px_0_0_#0d1117] hover:translate-x-1 hover:-translate-y-1 hover:shadow-[10px_10px_0_0_#0d1117] transition-all duration-300 text-sm uppercase tracking-widest flex items-center gap-2 font-['Space_Grotesk']"
+      >
+        <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        GitHub
+      </a>
+    </nav>
+    
+  </div>
+</header>
+
+<style>
+  .brush-stroke {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 200%;
+    background: linear-gradient(90deg, transparent 0%, rgba(236, 72, 153, 0.05) 80%, rgba(236, 72, 153, 0.4) 100%);
+    animation: paintRightToLeft 10s infinite linear;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @keyframes paintRightToLeft {
+    0% {
+      transform: translateX(50%) skewX(-25deg);
+      filter: hue-rotate(0deg);
+    }
+    100% {
+      transform: translateX(-100%) skewX(-25deg);
+      filter: hue-rotate(360deg);
+    }
+  }
+
+  .slash-tip {
+    display: inline-block;
+    color: #ec4899;
+    text-shadow: 3px 3px 0px rgba(0,0,0,0.5);
+    animation: slashColorCycle 10s infinite linear, paintWobble 2s infinite ease-in-out;
+  }
+
+  @keyframes slashColorCycle {
+    0% { color: #ec4899; }
+    25% { color: #8b5cf6; }
+    50% { color: #06b6d4; }
+    75% { color: #10b981; }
+    100% { color: #ec4899; }
+  }
+
+  @keyframes paintWobble {
+    0%, 100% { transform: rotate(15deg); }
+    50% { transform: rotate(25deg) scale(1.15); }
+  }
+</style>
