@@ -21,17 +21,31 @@ is_valid = has_structure and not is_ambiguous
 
 # URLs de la API de GitHub
 label_url = f"https://api.github.com/repos/{repo}/issues/{issue_number}/labels"
+comment_url = f"https://api.github.com/repos/{repo}/issues/{issue_number}/comments"
 
 if not is_valid:
-    # Si falla, añadimos las etiquetas de error
-    requests.post(label_url, json={"labels": ["RQA-FAILED", "AMBIGUOUS"]}, headers=headers)
-    print("Estado: Calidad Insuficiente. Etiquetas aplicadas.")
-else:
-    # SI ES VÁLIDO: Intentamos borrar la etiqueta RQA-FAILED si existe
-    delete_url = f"{label_url}/RQA-FAILED"
-    response = requests.delete(delete_url, headers=headers)
+    # 1. Si falló, intentamos borrar RQA-PASSED (por si el usuario editó un issue bueno y lo arruinó)
+    requests.delete(f"{label_url}/RQA-PASSED", headers=headers)
     
-    if response.status_code == 204:
-        print("Estado: Calidad Verificada. Etiqueta RQA-FAILED removida.")
-    else:
-        print("Estado: Calidad Verificada. No había etiquetas de error que remover.")
+    # 2. Añadimos las etiquetas de error
+    requests.post(label_url, json={"labels": ["RQA-FAILED", "AMBIGUOUS"]}, headers=headers)
+    
+    # 3. Dejamos un comentario de retroalimentación (Feedback SQA)
+    error_msg = "❌ **Pipeline Bloqueado: Requisito ambiguo o sin estructura.**\nPor favor, usa el formato: *Como [rol], quiero [acción], para [beneficio]* y reemplaza adjetivos subjetivos por métricas exactas."
+    requests.post(comment_url, json={"body": error_msg}, headers=headers)
+    
+    print("Estado: Calidad Insuficiente. Etiquetas y comentario aplicados.")
+
+else:
+    # 1. SI ES VÁLIDO: Borramos todas las etiquetas de error posibles
+    requests.delete(f"{label_url}/RQA-FAILED", headers=headers)
+    requests.delete(f"{label_url}/AMBIGUOUS", headers=headers)
+    
+    # 2. Añadimos la etiqueta de éxito
+    requests.post(label_url, json={"labels": ["RQA-PASSED"]}, headers=headers)
+    
+    # 3. Dejamos un comentario de validación exitosa
+    success_msg = "✅ **Calidad Verificada.**\nEste requisito cumple con los estándares ISO/IEC 25000 (RQA). La tubería está despejada para pasar a la fase de desarrollo."
+    requests.post(comment_url, json={"body": success_msg}, headers=headers)
+    
+    print("Estado: Calidad Verificada. Etiqueta RQA-PASSED y comentario aplicados.")
