@@ -1,0 +1,112 @@
+---
+import obj1 from "../../../asset/images/carrousel_objetivos/obj-1.jpeg";
+import obj2 from "../../../asset/images/carrousel_objetivos/obj-2.jpeg";
+import obj3 from "../../../asset/images/carrousel_objetivos/obj-3.jpeg";
+
+const objectives = [
+  {
+    title: "Preservación Vital",
+    description: "Protegiendo el corazón de la Amazonía mediante sistemas de monitoreo avanzado.",
+    img: obj1
+  },
+  {
+    title: "Eco-Tecnología",
+    description: "Creando puentes tecnológicos que nos reconecten con el entorno natural de forma sostenible.",
+    img: obj2
+  },
+  {
+    title: "Educación Inmersiva",
+    description: "Transformando la forma en que entendemos y experimentamos la selva tropical.",
+    img: obj3
+  }
+];
+---
+
+<section id="objetivo" class="bg-primary py-24 overflow-hidden w-full">
+  <div class="container mx-auto px-6 max-w-[1400px]">
+    
+    <div class="mb-16 text-center">
+      <h2 class="text-4xl md:text-5xl font-black uppercase tracking-widest">
+        Nuestros <span class="text-accent">Objetivos</span>
+      </h2>
+    </div>
+
+    <div class="relative w-full">
+      <!-- corrousel -->
+      <div id="obj-wrapper" class="flex transition-transform duration-1000 cubic-bezier(0.65, 0, 0.35, 1) w-full">
+        {objectives.map((obj, index) => (
+          <div class="min-w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            
+            <div class="relative h-[400px] md:h-[500px] rounded-[40px] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.4)] group">
+              <img src={obj.img.src} alt={obj.title} class="w-full h-full object-cover transition-transform duration-[10s] group-hover:scale-110" />
+              <div class="absolute inset-0 bg-gradient-to-r from-primary/60 to-transparent"></div>
+            </div>
+
+            <div class="lg:pl-12 flex flex-col items-center lg:items-start text-center lg:text-left">
+              <span class="text-8xl font-black text-accent/10 leading-none -mb-8 -ml-4 block select-none">
+                0{index + 1}
+              </span>
+              <h3 class="text-3xl md:text-5xl font-black mb-8 leading-tight max-w-[500px]">
+                {obj.title}
+              </h3>
+              <p class="text-lg opacity-80 leading-relaxed max-w-[500px]">
+                {obj.description}
+              </p>
+            </div>
+
+          </div>
+        ))}
+      </div>
+
+      <!-- Navegacion -->
+      <div class="flex items-center justify-center gap-8 mt-12">
+        <button id="prevBtn" class="w-14 h-14 rounded-full border-2 border-white/10 flex items-center justify-center text-xl hover:bg-accent hover:border-accent hover:text-primary transition-all active:scale-95 cursor-pointer">
+          ←
+        </button>
+        <div class="flex gap-3">
+          {objectives.map((_, i) => (
+            <button class="dot-btn w-2.5 h-2.5 rounded-full bg-white/20 transition-all duration-500 data-[active=true]:bg-accent data-[active=true]:w-10 data-[active=true]:rounded-xl" data-index={i} data-active={i === 0}></button>
+          ))}
+        </div>
+        <button id="nextBtn" class="w-14 h-14 rounded-full border-2 border-white/10 flex items-center justify-center text-xl hover:bg-accent hover:border-accent hover:text-primary transition-all active:scale-95 cursor-pointer">
+          →
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const wrapper = document.getElementById('obj-wrapper');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const dots = document.querySelectorAll('.dot-btn');
+  let currentIdx = 0;
+  const total = 3;
+
+  function update() {
+    if (!wrapper) return;
+    wrapper.style.transform = `translateX(-${currentIdx * 100}%)`;
+    dots.forEach((d, i) => {
+      d.setAttribute('data-active', (i === currentIdx).toString());
+    });
+  }
+
+  nextBtn?.addEventListener('click', () => {
+    currentIdx = (currentIdx + 1) % total;
+    update();
+  });
+
+  prevBtn?.addEventListener('click', () => {
+    currentIdx = (currentIdx - 1 + total) % total;
+    update();
+  });
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      currentIdx = parseInt(dot.getAttribute('data-index') || '0');
+      update();
+    });
+  });
+</script>

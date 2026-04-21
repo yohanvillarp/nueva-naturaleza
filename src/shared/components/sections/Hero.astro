@@ -1,0 +1,83 @@
+---
+import hero1 from "../../../asset/images/hero/hero-4.png";
+import hero2 from "../../../asset/images/hero/hero-5.png";
+import hero4 from "../../../asset/images/hero/hero-7.png";
+
+const slides = [
+  { img: hero1, tag: "castañales" },
+  { img: hero2, tag: "tours amazónicos" },
+  { img: hero4, tag: "otros atractivos" }
+];
+---
+
+<section id="inicio" class="relative h-screen w-full flex items-end pb-20 overflow-hidden">
+  <!-- Carousel de fondo -->
+  <div class="absolute inset-0 z-[-1]">
+    {slides.map((slide, index) => (
+      <div 
+        class={`absolute inset-0 opacity-0 transition-opacity duration-[2000ms] ease-in-out slide-item ${index === 0 ? 'active opacity-100' : ''}`}
+        data-index={index}
+      >
+        <img src={slide.img.src} alt={`Slide ${index + 1}`} class="w-full h-full object-cover brightness-[0.7]" />
+        <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent"></div>
+      </div>
+    ))}
+  </div>
+
+  <div class="container mx-auto px-6 relative z-10 w-full">
+    <div class="max-w-[500px] text-left">
+      <div class="flex gap-4 mb-4 h-8 items-center">
+        {slides.map((slide, index) => (
+          <span 
+            class={`text-[10px] uppercase tracking-[0.25em] font-extrabold transition-all duration-700 tag-item 
+              ${index === 0 ? 'text-accent opacity-100 scale-105' : 'text-white opacity-40 scale-100 hidden md:block'}`}
+            data-index={index}
+          >
+            {slide.tag}
+          </span>
+        ))}
+      </div>
+      
+      <h1 class="text-5xl md:text-6xl font-black uppercase leading-[1.1] mb-4 tracking-tighter">
+        Explora la <span class="text-accent">Selva</span>
+      </h1>
+      
+      <p class="text-sm md:text-base opacity-70 mb-8 max-w-[400px] font-medium leading-relaxed">
+        Experiencias que reconectan el alma con el corazón de la Amazonía.
+      </p>
+
+      <div class="animate-float opacity-50 flex items-center gap-4">
+        <div class="w-6 h-10 border-2 border-white rounded-full relative after:content-[''] after:absolute after:top-2 after:left-1/2 after:-translate-x-1/2 after:w-1 after:h-2 after:bg-white after:rounded-full after:animate-bounce"></div>
+        <span class="text-[10px] uppercase tracking-widest font-bold">Scroll</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute -bottom-20 -left-20 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[100px] pointer-events-none"></div>
+</section>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide-item');
+  const tags = document.querySelectorAll('.tag-item');
+
+  function showSlide(index) {
+    slides.forEach((s, i) => {
+      s.classList.toggle('opacity-100', i === index);
+      s.classList.toggle('opacity-0', i !== index);
+    });
+    
+    tags.forEach((t, i) => {
+      t.classList.toggle('text-accent', i === index);
+      t.classList.toggle('opacity-100', i === index);
+      t.classList.toggle('scale-105', i === index);
+      t.classList.toggle('opacity-40', i !== index);
+      t.classList.toggle('scale-100', i !== index);
+    });
+  }
+
+  setInterval(() => {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }, 5000);
+</script>

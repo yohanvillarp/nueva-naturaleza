@@ -1,0 +1,103 @@
+---
+---
+
+<section id="arquitectura" class="relative min-h-screen bg-primary overflow-hidden w-full select-none">
+  
+  <!-- 3D Spline Viewer (Background) -->
+  <div class="absolute inset-0 w-full h-full z-0 pointer-events-auto">
+    <iframe 
+      src="https://my.spline.design/culturetree-3WX1hKKmBkPgOpwFluAeyEEq/" 
+      frameborder="0" 
+      width="100%" 
+      height="100%" 
+      class="w-full h-full opacity-90"
+    ></iframe>
+    <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-primary to-transparent pointer-events-none"></div>
+  </div>
+
+  <!-- HUD -->
+  <div class="absolute inset-0 z-10 w-full h-full pointer-events-none p-4 md:p-10">
+    
+    <!-- Titulo dde la seccion -->
+    <div class="reveal fixed top-10 left-10 md:top-14 md:left-14">
+      <h3 class="text-xl md:text-3xl font-black italic tracking-tighter uppercase leading-none">
+        Arquitectura <span class="text-accent">Simbionte</span>
+      </h3>
+      <div class="mt-2 flex gap-2">
+        <span class="px-2 py-0.5 bg-accent/10 border border-accent/20 rounded-full text-[8px] font-black uppercase text-accent tracking-widest">IA Core</span>
+        <span class="px-2 py-0.5 bg-accent/10 border border-accent/20 rounded-full text-[8px] font-black uppercase text-accent tracking-widest">IoT Mesh</span>
+      </div>
+    </div>
+
+    <!-- nivel de tecnologias -->
+    
+    <!-- 1. IA Visión -->
+    <div class="reveal absolute top-[22%] left-6 md:left-20 group">
+      <div class="flex items-center gap-3">
+        <div class="w-7 h-7 rounded-full border border-accent/30 flex items-center justify-center bg-primary">
+          <div class="w-1 h-1 bg-accent rounded-full shadow-[0_0_8px_#70e000]"></div>
+        </div>
+        <div>
+          <h4 class="text-accent font-black text-[10px] uppercase tracking-widest leading-none mb-1">IA Visión</h4>
+          <p class="text-[8px] opacity-100 font-bold text-black uppercase leading-none">Detección Especies</p>
+        </div>
+        <div class="h-[1px] w-20 md:w-80 bg-gradient-to-r from-accent to-transparent opacity-60"></div>
+        <div class="w-1.5 h-1.5 bg-accent rounded-full shadow-[0_0_10px_#70e000]"></div>
+      </div>
+    </div>
+
+    <!-- 2. Cámaras / IA -->
+    <div class="reveal absolute top-[40%] left-4 md:left-16 group">
+        <div class="flex items-center gap-3">
+          <div class="w-7 h-7 rounded-full border border-accent/30 flex items-center justify-center bg-primary">
+             <div class="w-1 h-1 bg-accent rounded-full"></div>
+          </div>
+          <div>
+             <h4 class="text-accent font-black text-[10px] uppercase tracking-widest leading-none mb-1">Cámaras v2</h4>
+             <p class="text-[8px] opacity-100 text-black font-bold uppercase leading-none">Monitoreo 4K</p>
+          </div>
+          <div class="h-[1px] w-16 md:w-72 bg-gradient-to-r from-accent to-transparent opacity-60"></div>
+          <div class="w-1.5 h-1.5 bg-accent rounded-full shadow-[0_0_10px_#70e000]"></div>
+        </div>
+      </div>
+
+    <!-- 3. Audio -->
+    <div class="reveal absolute top-[58%] left-8 md:left-24 group">
+      <div class="flex items-center gap-3">
+        <div class="w-7 h-7 rounded-full border border-accent/30 flex items-center justify-center bg-primary">
+          <div class="w-1 h-1 bg-accent rounded-full animate-pulse"></div>
+        </div>
+        <div>
+          <h4 class="text-accent font-black text-[10px] uppercase tracking-widest leading-none mb-1">Audio</h4>
+          <p class="text-[8px] opacity-100 text-black font-bold uppercase leading-none">Bioacústica</p>
+        </div>
+        <div class="h-[1px] w-10 md:w-56 bg-gradient-to-r from-accent to-transparent opacity-60"></div>
+        <div class="w-1.5 h-1.5 bg-accent rounded-full shadow-[0_0_10px_#70e000]"></div>
+      </div>
+    </div>
+
+    <!-- 4. Sensores -->
+    <div class="reveal absolute bottom-[20%] left-6 md:left-20 group">
+        <div class="flex items-center gap-3">
+          <div class="w-7 h-7 rounded-full border border-accent/30 flex items-center justify-center bg-primary">
+             <div class="w-1 h-1 bg-accent rounded-full animate-ping"></div>
+          </div>
+          <div>
+            <h4 class="text-accent font-black text-[10px] uppercase tracking-widest leading-none mb-1">Sensores IoT</h4>
+            <p class="text-[8px] opacity-100 text-black font-bold uppercase leading-none">Suelo & Humedad</p>
+          </div>
+          <div class="h-[1px] w-12 md:w-48 bg-gradient-to-r from-accent to-transparent opacity-60"></div>
+          <div class="w-1.5 h-1.5 bg-accent rounded-full shadow-[0_0_10px_#70e000]"></div>
+        </div>
+      </div>
+
+  </div>
+
+  <!-- Lineas -->
+  <div class="absolute inset-0 pointer-events-none opacity-5 z-20 overflow-hidden">
+    <div class="absolute top-[15%] left-0 w-full h-[1px] bg-white"></div>
+    <div class="absolute bottom-[15%] left-0 w-full h-[1px] bg-white"></div>
+    <div class="absolute left-[15%] top-0 h-full w-[1px] bg-white"></div>
+  </div>
+
+</section>
