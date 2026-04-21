@@ -7,7 +7,7 @@ repo = os.getenv("GITHUB_REPOSITORY")
 token = os.getenv("GITHUB_TOKEN")
 
 headers = {
-    "Authorization": f: "token {token}",
+    "Authorization": f"token {token}",
     "Accept": "application/vnd.github.v3+json"
 }
 
