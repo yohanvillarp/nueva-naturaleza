@@ -1,0 +1,32 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Header from "../shared/components/layout/Header.astro";
+import Footer from "../shared/components/layout/Footer.astro";
+import Hero from "../shared/components/sections/Hero.astro";
+import Objectives from "../shared/components/sections/Objectives.astro";
+import Architecture from "../shared/components/sections/Architecture.astro";
+---
+
+<MainLayout title="Nueva Naturaleza | Amazonía Tech">
+  <Header />
+  
+  <main class="relative z-10 w-full overflow-x-hidden">
+    <Hero />
+    
+    <div class="h-24 bg-gradient-to-b from-primary to-secondary"></div>
+    
+    <Objectives />
+    
+    <div class="h-24 bg-gradient-to-b from-secondary to-primary"></div>
+    
+    <Architecture />
+  </main>
+
+  <Footer />
+
+  <!-- Global Bubble -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute -top-40 -right-40 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[100px] animate-[pulse_20s_infinite_alternate]"></div>
+    <div class="absolute bottom-20 -left-20 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[80px] animate-[pulse_15s_infinite_alternate-reverse]"></div>
+  </div>
+</MainLayout>
